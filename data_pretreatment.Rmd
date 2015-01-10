@@ -1,0 +1,64 @@
+---
+title: "前処理のための前処理"
+subtitle: "シリーズ前処理2015"
+author: "@u_ribo"
+date: "Tokyo.R#45 January 17, 2015"
+header-includes:
+# ref) https://github.com/FuzzyWuzzie/Beamer-Theme-Execushares/blob/master/beamerthemeExecushares.sty
+    - \definecolor{Black1}{RGB}{43,40,40}
+    - \definecolor{Blue1}{RGB}{48, 122, 190}
+    - \definecolor{Blue2}{RGB}{99, 151, 205}
+    - \definecolor{ExecusharesWhite}{RGB}{255,255,243}
+    - \definecolor{Grey1}{RGB}{164, 173, 185}
+# using pkg
+    - \usepackage{zxjatype}
+    - \setmainfont{Helvetica Neue}
+    - \setjamainfont{Hiragino Kaku Gothic Pro}
+    - \setbeamertemplate{navigation symbols}{}
+    - \hypersetup{colorlinks = true, linkcolor = blue, citecolor = red, urlcolor = Black1}
+    - \setbeamerfont{title}{size = \fontsize{38}{10}}
+    - \setbeamercolor{title}{fg = Blue1}
+    - \setbeamerfont{subtitle}{size = \large}
+    - \setbeamercolor{subtitle}{fg = Blue2}
+    - \setbeamercolor{author}{fg = Black1}
+    - \setbeamercolor{normal text}{fg = Black1}
+    - \setbeamerfont{date}{series = \itshape}
+    - \setbeamercolor{date}{fg = Grey1}
+    - \setbeamercolor{frametitle}{fg = Blue1}
+    - \renewcommand{\baselinestretch}{1.2}
+output:
+  beamer_presentation:
+    fonttheme: "structurebold"
+    keep_tex: true
+    pandoc_args:
+     ["--latex-engine=xelatex"]
+fontsize: 17pt
+---
+
+```{r child = "document_setting.Rmd"}
+```
+
+## Abstract
+
+元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
+
+## データ解析
+
+\center{
+  \Huge{ほとんどが\\前処理}
+}
+
+
+## 参考
+
+
+* [欠測への対応 Maeshori missing](http://www.slideshare.net/dichika/maeshori-missing)
+* [「plyrパッケージで君も前処理スタ☆」改め「plyrパッケージ徹底入門」](http://www.slideshare.net/teramonagi/tokyo-r30-20130420)
+* [データハンドリング Tokyor39 yokkuns](http://www.slideshare.net/yokkuns/tokyor39-yokkuns)
+* [R入門（dplyrでデータ加工)-TokyoR42](http://www.slideshare.net/gepuro/rdplyrtokyor42)
+
+## \small{Sessioninfo: `r R.Version()$version.string`}
+
+```{r size='footnotesize'}
+sessionInfo() %$% otherPkgs %>% names
+```

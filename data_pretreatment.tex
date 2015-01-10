@@ -1,0 +1,134 @@
+\documentclass[17pt,ignorenonframetext,]{beamer}
+\usefonttheme{structurebold}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{:}
+\setbeamercolor{caption name}{fg=normal text.fg}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{lmodern}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+    \newcommand{\euro}{€}
+  \else
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+      \fi
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+
+% Comment these out if you don't want a slide with just the
+% part/section/subsection/subsubsection title:
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \let\insertsectionnumber\relax
+  \let\sectionname\relax
+  \frame{\sectionpage}
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+\definecolor{Black1}{RGB}{43,40,40}
+\definecolor{Blue1}{RGB}{48, 122, 190}
+\definecolor{Blue2}{RGB}{99, 151, 205}
+\definecolor{ExecusharesWhite}{RGB}{255,255,243}
+\definecolor{Grey1}{RGB}{164, 173, 185}
+\usepackage{zxjatype}
+\setmainfont{Helvetica Neue}
+\setjamainfont{Hiragino Kaku Gothic Pro}
+\setbeamertemplate{navigation symbols}{}
+\hypersetup{colorlinks = true, linkcolor = blue, citecolor = red, urlcolor = Black1}
+\setbeamerfont{title}{size = \fontsize{38}{10}}
+\setbeamercolor{title}{fg = Blue1}
+\setbeamerfont{subtitle}{size = \large}
+\setbeamercolor{subtitle}{fg = Blue2}
+\setbeamercolor{author}{fg = Black1}
+\setbeamercolor{normal text}{fg = Black1}
+\setbeamerfont{date}{series = \itshape}
+\setbeamercolor{date}{fg = Grey1}
+\setbeamercolor{frametitle}{fg = Blue1}
+\renewcommand{\baselinestretch}{1.2}
+
+\title{前処理のための前処理}
+\subtitle{シリーズ前処理2015}
+\author{@u\_ribo}
+\date{Tokyo.R\#45 January 17, 2015}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Abstract}
+
+元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
+
+\end{frame}
+
+\begin{frame}{データ解析}
+
+\center{
+  \Huge{ほとんどが\\前処理}
+}
+
+\end{frame}
+
+\begin{frame}{参考}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{http://www.slideshare.net/dichika/maeshori-missing}{欠測への対応
+  Maeshori missing}
+\item
+  \href{http://www.slideshare.net/teramonagi/tokyo-r30-20130420}{「plyrパッケージで君も前処理スタ☆」改め「plyrパッケージ徹底入門」}
+\item
+  \href{http://www.slideshare.net/yokkuns/tokyor39-yokkuns}{データハンドリング
+  Tokyor39 yokkuns}
+\item
+  \href{http://www.slideshare.net/gepuro/rdplyrtokyor42}{R入門（dplyrでデータ加工)-TokyoR42}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\small{Sessioninfo: R version 3.1.2 (2014-10-31)}}
+
+\begin{verbatim}
+ [1] "knitcitations"
+ [2] "fortunes"     
+ [3] "xtable"       
+ [4] "rmarkdown"    
+ [5] "devtools"     
+ [6] "popbio"       
+ [7] "quadprog"     
+ [8] "ggplot2"      
+ [9] "glmmML"       
+[10] "dplyr"        
+[11] "magrittr"     
+[12] "MASS"         
+[13] "lattice"      
+[14] "stringr"      
+[15] "knitr"        
+\end{verbatim}
+
+\end{frame}
+
+\end{document}
