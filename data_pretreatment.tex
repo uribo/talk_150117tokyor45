@@ -58,6 +58,8 @@
 \setjamainfont{Hiragino Kaku Gothic Pro}
 \setbeamertemplate{navigation symbols}{}
 \hypersetup{colorlinks = true, linkcolor = blue, citecolor = red, urlcolor = Black1}
+\usepackage{fontspec}
+\usepackage{fontawesome}
 \setbeamerfont{title}{size = \fontsize{38}{10}}
 \setbeamercolor{title}{fg = Blue1}
 \setbeamerfont{subtitle}{size = \large}
@@ -67,7 +69,7 @@
 \setbeamerfont{date}{series = \itshape}
 \setbeamercolor{date}{fg = Grey1}
 \setbeamercolor{frametitle}{fg = Blue1}
-\renewcommand{\baselinestretch}{1.2}
+\setbeamercolor{section in toc}{fg = Grey1}
 
 \title{前処理のための前処理}
 \subtitle{シリーズ前処理2015}
@@ -77,17 +79,65 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Abstract}
+\begin{frame}
 
-元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
+\center{
+  \Huge{\textbf{シリーズ前処理: \\おさらい}}
+}
 
 \end{frame}
 
-\begin{frame}{データ解析}
+\begin{frame}{前処理 \faFood}
 
 \center{
-  \Huge{ほとんどが\\前処理}
+  \LARGE{【広義】手元にある観測データを、意図する分析手法が適用できる形にまでもっていく方法}
 }
+
+\begin{quote}
+\scriptsize{http://www.slideshare.net/dichika/maeshori-missing}
+\end{quote}
+
+\end{frame}
+
+\begin{frame}{前処理 \faFood}
+
+\center{
+  \Huge{データ解析に占める時間の\\ほとんどが前処理}
+}
+
+\end{frame}
+
+\begin{frame}{\#Tsurami}
+
+\begin{figure}
+  \includegraphics[scale = 0.8]{images/tsurami.png}
+\end{figure}
+
+\begin{quote}
+\scriptsize{https://twitter.com/yamano357/status/552514988137783301}
+\end{quote}
+
+\end{frame}
+
+\begin{frame}
+
+\center{
+  \Huge{\textbf{今日のテーマ: \\前処理のための\\前処理}}
+}
+
+\end{frame}
+
+\begin{frame}
+
+\center{
+  \Huge{\textcolor{magenta}{\faExclamationSign}注意\textcolor{magenta}{\faExclamationSign} \\参考にする程度}
+}
+
+\end{frame}
+
+\begin{frame}{Abstract}
+
+元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
 
 \end{frame}
 
