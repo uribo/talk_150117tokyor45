@@ -19,8 +19,12 @@ opts_chunk$set(
 ### Using Packages ###
 library(magrittr)
 library(dplyr)
-library(knitcitations) # https://github.com/cboettig/knitcitations
+library(knitcitations)
 library(ggplot2)
+library(xtable)
+library(ggthemr) # https://github.com/cttobin/ggthemr
 ### knitcitations options ###
 cite_options(max.names = 1)
+### ggthemr's theme ###
+ggthemr("dust", text_size = 16)
 ```
