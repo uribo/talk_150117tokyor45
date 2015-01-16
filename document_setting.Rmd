@@ -1,7 +1,7 @@
 ```{r, include = FALSE, chace = FALSE}
 ### R options ###
 # see help(options)
-options(width = 32, xtable.comment = FALSE)
+options(width = 60, xtable.comment = FALSE)
 ### knitr chunk options ###
 opts_chunk$set(
   chace      = FALSE,
@@ -26,5 +26,5 @@ library(ggthemr) # https://github.com/cttobin/ggthemr
 ### knitcitations options ###
 cite_options(max.names = 1)
 ### ggthemr's theme ###
-ggthemr("dust", text_size = 16)
+ggthemr("dust", text_size = 17)
 ```
