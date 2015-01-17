@@ -11,24 +11,37 @@ header-includes:
     - \definecolor{Orange1}{HTML}{F5996F}
     - \definecolor{White1}{RGB}{255,255,243}
     - \definecolor{Grey1}{RGB}{164, 173, 185}
+    - \definecolor{Grey2}{RGB}{244, 244, 244}
 # using pkg
     - \usepackage{zxjatype}
     - \setjamainfont{Hiragino Kaku Gothic Pro}
     - \setbeamertemplate{navigation symbols}{}
+    - \setbeamertemplate{itemize item}{\textcolor{Blue2}{\faOk}}
+    - \setbeamertemplate{itemize subitem}{\textcolor{Black1}{\faThumbsDown}}
     - \hypersetup{colorlinks = true, linkcolor = blue, citecolor = red, urlcolor = Black1}
     - \usepackage{fontspec}
     - \usepackage{fontawesome} # require installed FontAwesome
+    - \usepackage{scrextend}
+    - \changefontsizes{17pt}
+    - \usepackage{nruby}
+    - \usepackage{ulem}
+    - \usepackage{soul}
+    - \setulcolor{magenta}
+    - \setstcolor{Black1}
+    - \sethlcolor{Grey2}
 # set font
     - \setbeamerfont{title}{size = \fontsize{38}{10}}
     - \setbeamercolor{title}{fg = Blue1}
-    - \setbeamerfont{subtitle}{size = \large}
+    - \setbeamerfont{subtitle}{size = \Large}
     - \setbeamercolor{subtitle}{fg = Blue2}
     - \setbeamercolor{author}{fg = Black1}
     - \setbeamercolor{normal text}{fg = Black1}
     - \setbeamerfont{date}{series = \itshape}
     - \setbeamercolor{date}{fg = Grey1}
     - \setbeamercolor{frametitle}{fg = Blue1}
-    - \setbeamercolor{section in toc}{fg = Grey1}
+    - \setbeamerfont{frametitle}{size = \Large}
+    - \setbeamerfont{footnote}{size = \tiny}
+    - \setbeamercolor{enumerate item}{fg = Blue2}
 output:
   beamer_presentation:
     fonttheme: "structurebold"
@@ -37,11 +50,10 @@ output:
      ["--latex-engine=xelatex"]
 mainfont: Helvetica Neue
 monofont: Ricty
-fontsize: 17pt
 incremental: true
 ---
 
-```{r child = "document_setting.Rmd"}
+```{r global_options, child = "document_setting.Rmd"}
 ```
 
 ---
@@ -55,14 +67,15 @@ incremental: true
 ## \faFood 前処理
 
 \center{
-  \LARGE{【広義】手元にある観測データを、意図する分析手法が適用できる形にまでもっていく方法}
+  \large{【広義】手元にある観測データを、\\意図する分析手法が適用できる形にまで\\もっていく方法}
 }
 
 > \scriptsize{\faLink http://www.slideshare.net/dichika/maeshori-missing}
 
-## \faFood 前処理
 
-```{r work_time_ratio, fig.width = 6, fig.height = 3.2}
+## \faTime 解析時間のほとんどは前処理
+
+```{r work_time_ratio, fig.width = 5, fig.height = 3, eval = FALSE}
 data.frame(
   time = c("Manipulation", "Analysis"),
   effort    = c(80, 20)) %>%
@@ -72,127 +85,250 @@ data.frame(
   theme(text = element_text(family = "Helvetica", size = 14))
 ```
 
-\scriptsize{\faBook Dasu and Johnson 2003. Exploratory Data Mining and Data Cleaning. \textit{Wiley}}
+\includegraphics{images/work_time_ratio-1.pdf}
 
-## \faFood 前処理
-
-\center{
-  \Huge{\faTime 解析時間の\\ほとんどは前処理}
-}
+\flushright{\scriptsize{\faBook Dasu and Johnson 2003.\\ Exploratory Data Mining and Data Cleaning. \textit{Wiley}}}
 
 ---
 
-```{r, results = 'asis', size = 'scriptsize'}
-rep("ムダ", 100)
+```{r, results = 'asis'}
+rep("無駄", 80)
 ```
 
 ---
 
 \center{
+  \large{前処理に時間がかかる \\-> 最終的な出力結果の質が低下する}\\\vspace{0.6em}
   \fontsize{120}{10}{\faThumbsDown \faThumbsDown \faThumbsDown}
 }
 
 ---
 
-\center{
-  \large{（データ処理が楽に終ることで得られる）\\\textcolor{magenta}{幸せ}について\\本気だして考えてみた}
-}
+```{r, results = 'asis'}
+rep("どうしてこうなった", 30)
+```
 
 ---
 
 \center{
+  \large{\textcolor{magenta}{Tokyo.R} シリーズ前処理}\\
   \Huge{\textbf{今日のテーマ: \\\textcolor{Blue1}{前}処理のための\\\textcolor{magenta}{前}処理}}
 }
 
----
-
 ## \large{もちべーしょん: 前処理の苦労を減らしたい}
 
-* データ解析や前処理をする際の用意、心がけ
-* ぼくのがんがえた~~さいきょうの~~こうりつてきな**まえしょり**にひつような**まえしょり**
+内容...
 
-## 良い前処理を実現するための５箇条
+* データ解析、前処理における\textbf{環境構築、心がけ}
+* ぼくのがんがえたこうりつてきなまえしょり、\textbf{そのためにひつようなまえしょり}
 
-1. RStudio内ですべて完結
-2. `.Rproj`を作成する
-3. GitやSubversionによるバージョン管理をおこなう
-4. `.Rmd`でファイルを保存する
-5. プロジェクトのガイドラインを策定する
+\large{\faHandLeft 議論を通じて知識・理解を深めたい}
 
 ---
 
 \center{
-  \large{「いろいろと\textcolor{Blue2}{面倒}だ」}
+  \Huge{\textbf{\textit{\textcolor{magenta}{\#Tsurami}}}}
+}
+
+## \textit{\textcolor{magenta}{\#Tsurami}}
+
+\center{
+  \includegraphics{images/tsurami.png}
   
-  \huge{「でもあなたのちっぽけな\textbf{\textcolor{magenta}{頭では忘れてしまう}}でしょう（煽り）」}\
+  \textit{\scriptsize{\faTwitter https://twitter.com/yamano357/status/552514988137783301}}
+}
+
+## \textit{\textcolor{magenta}{\#Tsurami}}
+
+\center{
+  \includegraphics{images/tsurami2.png}
   
-  \small{「ぐぬぬ」}
+  \textit{\scriptsize{\faTwitter https://twitter.com/gg$\_$hatano/status/551328451068588032}}
+}
+
+## \textit{\textcolor{magenta}{\#Tsurami}}
+
+\center{
+  Japan.R2014 \textcolor{magenta}{所\ruby{沢}{さわ}}さんの発表より...
+
+  Remember \faQuoteLeft \textcolor{Blue2}{why are you using SJIS?} \faQuoteRight
+
+  \includegraphics{images/why_are_u_using_sjis.png}
+
+  \textit{\scriptsize{\faGithub https://github.com/hadley/dplyr/issues/339}}
+}
+
+## \faThumbsDown 前処理を行う際に生じる問題の原因
+
+* Are you okay?
+    * 邪智暴虐な俺々ファイルの存在
+    * コメントのない奇怪なコード
+    * 作業過程の再現性の欠如
+    * とりあえず、的に書かれたコード
+    
+---
+
+```{r, results = 'asis'}
+rep("滅", 110)
+```
+
+## \faBullhorn Rを使った前処理５原則
+
+1. 作業はRStudio内ですべて完結させる
+2. \hl{.Rproj}を作成する
+3. \hl{.Rmd}でファイルを保存する
+4. Gitによるバージョン管理をおこなう
+5. プロジェクトの\textbf{\textcolor{magenta}{ガイドライン}}を策定する
+
+## Rにおける統合開発環境: RStudio
+
+```{r webshot_rstudio_com, eval = FALSE}
+webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400, cliprect = "viewport")
+```
+
+\begin{columns}[T]
+  \begin{column}[T]{6cm}
+    \begin{itemize}
+      \item そろそろ ver.0.99
+      \item Viewerの強化
+      \item パッケージ名の補完
+      \item \scriptsize{ref) \faLink http://goo.gl/inFdt5}
+    \end{itemize}
+  \end{column}
+  \begin{column}[T]{4cm}
+    \includegraphics[scale = 0.25]{images/webshot_rstudio_com.png}
+  \end{column}
+\end{columns}
+
+\large{\faHandLeft これから説明する内容は\\すべてRStudio上で行える}
+
+---
+
+\center{
+  \Huge{\faCoffee 話題閑話}
 }
 
 ---
 
-## 何が目的か
+\center{
+  \Huge{\textbf{絶許}}
+  
+  \includegraphics{images/gg_hatamu_tweet.png}
+}
 
-数時間ですべての作業が完了するプロジェクトはほとんどなく、多くのプロジェクトが長い時間を経て完成される。また、完成されてからも定期・不定記に管理する必要が生じる。そのため、プロジェクトは変動しつづけるものである。
+## .Rproj
 
--> 記録として残すことが大事
+* フォルダ内にフォルダ名.Rprojというファイルが生成
+* RStudioの設定などが記述される
 
-## dd
+### ご利益
 
-* 以下の項目を円滑に進める体制が整っている
-* オープンなプロジェクトであればGitHubにリポジトリを作成する
-* し、コードとコメントの分離に努める
-* し、プロジェクト内での混乱、衝突を防ぐ
+* 面倒なフォルダ指定、\hl{setwd}からの開放
+* パッケージ管理ツール Packratの利用
+* Gitの運用
 
-## Packrat...
+---
 
-```{r}
-library(DiagrammeR)
-```
+\includegraphics[scale = 0.8]{images/rstudio_panel.png}
+
+---
+
+## .Rmd: R + Markdown + \LaTeX
+
+\center{
+  \Huge{= \textcolor{magenta}{POWERFUL} \faRocket}
+  
+  \normalsize{このスライドも\hl{.Rmd}で書いている
+  
+  \faGithub \href{https://github.com/uribo/lab.note}{\hl{lab.note}}パッケージでどうぞ \footnote{ただしWindows, Linux、テメーらはダメだ（\textcolor{magenta}{未検証}）}
+  
+  \tiny{\hl{rmarkdown::draft("MyReport.Rmd",template="basic$\_$report",package="lab.note")}
+  }}
+}
+
+## アウトプットｵｵｵｵｵｵｵｵ!!!!
+
+ぼく「（モニターで確認して）よし、これでいいな」
+
+ボス「図を印刷して見せて」
+
+ぼく「（あああああああああ！！！！！！！！！）」
+
+\flushright{\faHandLeft \LaTeX おじさんが誕生した \footnote{HTMLでの出力はモニター向け。PDFを印刷したいよね、と。Word? しらん}}
+
+
+## Git: 分散型バージョン管理システム
+
+* 長い時間を経てプロジェクトは完成される
+* 完成後も管理し続ける必要が生じる
+* 同様の処理を、別プロジェクトで、自分以外の誰かが行う場合がある
+
+\faHandLeft 記録として残すことが大事
+
+\textbf{\textcolor{magenta}{\faUser 自分のため、\faGroup 仲間のため、\faGlobe 誰かのため}}
+
+## GitHubで広がるコミュニケーション
+
+* パッケージを作って公開
+* 今日からあなたも開発者
+* 芝を生やしてもちべーしょんを高めよう！
+
+\center{
+  \includegraphics{images/contribution.png}
+}
+
+## README $\fallingdotseq$ 嫁
+
+* リポジトリ（プロジェクト）の顔
+* 迷った際はここを見れば解決できるように
+    1. 作業のワークフローを書く
+    2. ファイル名、関数名の規則
+    3. プロットの色、サイズ
+
+## \faMagic Tips
+
+* とにかく日本語はNG
+    * SJIS
+* 犬 -> \hl{INU}にするなら辞書をひいて\hl{dog}に
+    * ローマ字カナも良くない
+* Excelは入力・閲覧用 -> \hl{dplyr}パッケージで
+    * 単位変換、新たな列の作成は闇
+* ハイフン、アンダーバーをどう扱うか
+    * スペースの落とし穴
+
+---
+\center{
+  \Large{「いろいろと\textcolor{Blue2}{面倒}だ」}
+    
+  \LARGE{「あなたのちっぽけな\\\textbf{\textcolor{magenta}{頭では忘れてしまう}}\\でしょう（煽り）」}\
+    
+  \footnotesize{「ぐぬぬ」}
+  }
 
 ## @dichika進捗どうですか\faEyeOpen
 
-\includegraphics[angle = -3]{images/at_dichika.png}
-
-## \large{Remember \textit{\textcolor{Black1}{why are you using SJIS}}}
-
-![](images/why_are_u_using_sjis.png)
-
-> \scriptsize{\faLink https://github.com/hadley/dplyr/issues/339}
-
-## \#Tsurami
-
-![](images/tsurami.png)
-
-> \scriptsize{\faLink https://twitter.com/yamano357/status/552514988137783301}
-
-## \#Tsurami
-
-![](images/tsurami2.png)
-
-> \scriptsize{\faLink https://twitter.com/gg$\_$hatano/status/551328451068588032}
-
-
-## \#Tsurami
-
 \center{
-  \Huge{供養しましょう}
-  \small{\url{https://github.com/uribo/data_treatment}}
+  \includegraphics[angle = -3]{images/at_dichika.png}
+  
+  \textit{\scriptsize{\faLink http://www.slideshare.net/dichika/maeshori-missing}}
 }
 
----
+## \Large{みんなで \textit{\textcolor{magenta}{\#Tsurami}} を供養しよう}
 
+```{r github_uribo_data_treatment, eval = FALSE}
+webshot("https://github.com/uribo/data_treatment", "images/github_uribo_data_treatment.png", vwidth = 1200, cliprect = "viewport")
+```
 
-## 前処理のための前処理チェックリスト
-
-
-
-## Abstract
-
-元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
+\center{
+  \includegraphics[scale = 0.25]{images/github_uribo_data_treatment.png}
+  
+  \textit{\scriptsize{\faGithub https://github.com/uribo/data$\_$treatment}}
+}
 
 ## \small{Sessioninfo: `r R.Version()$version.string`}
 
-```{r size = 'footnotesize'}
+```{r results = 'asis', eval = TRUE}
 sessionInfo() %$% otherPkgs %>% names
 ```
+
+\flushright{\textit{Questions?} \faComments}

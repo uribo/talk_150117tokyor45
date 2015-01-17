@@ -1,4 +1,4 @@
-\documentclass[17pt,ignorenonframetext,]{beamer}
+\documentclass[ignorenonframetext,]{beamer}
 \usefonttheme{structurebold}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{:}
@@ -25,15 +25,6 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 
 % Comment these out if you don't want a slide with just the
 % part/section/subsection/subsubsection title:
@@ -53,9 +44,6 @@
   \frame{\subsectionpage}
 }
 
-\usepackage[normalem]{ulem}
-% avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -66,22 +54,35 @@
 \definecolor{Orange1}{HTML}{F5996F}
 \definecolor{White1}{RGB}{255,255,243}
 \definecolor{Grey1}{RGB}{164, 173, 185}
+\definecolor{Grey2}{RGB}{244, 244, 244}
 \usepackage{zxjatype}
 \setjamainfont{Hiragino Kaku Gothic Pro}
 \setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\textcolor{Blue2}{\faOk}}
+\setbeamertemplate{itemize subitem}{\textcolor{Black1}{\faThumbsDown}}
 \hypersetup{colorlinks = true, linkcolor = blue, citecolor = red, urlcolor = Black1}
 \usepackage{fontspec}
 \usepackage{fontawesome}
+\usepackage{scrextend}
+\changefontsizes{17pt}
+\usepackage{nruby}
+\usepackage{ulem}
+\usepackage{soul}
+\setulcolor{magenta}
+\setstcolor{Black1}
+\sethlcolor{Grey2}
 \setbeamerfont{title}{size = \fontsize{38}{10}}
 \setbeamercolor{title}{fg = Blue1}
-\setbeamerfont{subtitle}{size = \large}
+\setbeamerfont{subtitle}{size = \Large}
 \setbeamercolor{subtitle}{fg = Blue2}
 \setbeamercolor{author}{fg = Black1}
 \setbeamercolor{normal text}{fg = Black1}
 \setbeamerfont{date}{series = \itshape}
 \setbeamercolor{date}{fg = Grey1}
 \setbeamercolor{frametitle}{fg = Blue1}
-\setbeamercolor{section in toc}{fg = Grey1}
+\setbeamerfont{frametitle}{size = \Large}
+\setbeamerfont{footnote}{size = \tiny}
+\setbeamercolor{enumerate item}{fg = Blue2}
 
 \title{前処理のための前処理}
 \subtitle{シリーズ前処理2015}
@@ -102,7 +103,7 @@
 \begin{frame}{\faFood 前処理}
 
 \center{
-  \LARGE{【広義】手元にある観測データを、意図する分析手法が適用できる形にまでもっていく方法}
+  \large{【広義】手元にある観測データを、\\意図する分析手法が適用できる形にまで\\もっていく方法}
 }
 
 \begin{quote}
@@ -111,47 +112,35 @@
 
 \end{frame}
 
-\begin{frame}{\faFood 前処理}
+\begin{frame}{\faTime 解析時間のほとんどは前処理}
 
 \includegraphics{images/work_time_ratio-1.pdf}
 
-\scriptsize{\faBook Dasu and Johnson 2003. Exploratory Data Mining and Data Cleaning. \textit{Wiley}}
-
-\end{frame}
-
-\begin{frame}{\faFood 前処理}
-
-\center{
-  \Huge{\faTime 解析時間の\\ほとんどは前処理}
-}
+\flushright{\scriptsize{\faBook Dasu and Johnson 2003.\\ Exploratory Data Mining and Data Cleaning. \textit{Wiley}}}
 
 \end{frame}
 
 \begin{frame}
 
-{[}1{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}4{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}7{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}10{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}13{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}16{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}19{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}22{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}25{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}28{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}31{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}34{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}37{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}40{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}43{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}46{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}49{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}52{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}55{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}58{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}61{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}64{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}67{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}70{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}73{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}76{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}79{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}82{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}85{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}88{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}91{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}94{]} ``ムダ'' ``ムダ'' ``ムダ''
-{[}97{]} ``ムダ'' ``ムダ'' ``ムダ'' {[}100{]} ``ムダ''
+{[}1{]} ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' {[}9{]} ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' ``無駄'' {[}17{]} ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' ``無駄'' ``無駄'' {[}25{]} ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' ``無駄'' ``無駄'' ``無駄'' {[}33{]} ``無駄'' ``無駄'' ``無駄''
+``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' {[}41{]} ``無駄'' ``無駄''
+``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' {[}49{]} ``無駄''
+``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' {[}57{]}
+``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+{[}65{]} ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' {[}73{]} ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄'' ``無駄''
+``無駄'' ``無駄''
 
 \end{frame}
 
 \begin{frame}
 
 \center{
+  \large{前処理に時間がかかる \\-> 最終的な出力結果の質が低下する}\\\vspace{0.6em}
   \fontsize{120}{10}{\faThumbsDown \faThumbsDown \faThumbsDown}
 }
 
@@ -159,15 +148,28 @@
 
 \begin{frame}
 
-\center{
-  \large{（データ処理が楽に終ることで得られる）\\\textcolor{magenta}{幸せ}について\\本気だして考えてみた}
-}
+{[}1{]} ``どうしてこうなった'' ``どうしてこうなった'' {[}3{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}5{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}7{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}9{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}11{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}13{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}15{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}17{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}19{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}21{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}23{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}25{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}27{]}
+``どうしてこうなった'' ``どうしてこうなった'' {[}29{]}
+``どうしてこうなった'' ``どうしてこうなった''
 
 \end{frame}
 
 \begin{frame}
 
 \center{
+  \large{\textcolor{magenta}{Tokyo.R} シリーズ前処理}\\
   \Huge{\textbf{今日のテーマ: \\\textcolor{Blue1}{前}処理のための\\\textcolor{magenta}{前}処理}}
 }
 
@@ -175,151 +177,356 @@
 
 \begin{frame}{\large{もちべーしょん: 前処理の苦労を減らしたい}}
 
+内容\ldots{}
+
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  データ解析や前処理をする際の用意、心がけ
+  データ解析、前処理における\textbf{環境構築、心がけ}
 \item
-  ぼくのがんがえた\sout{さいきょうの}こうりつてきな\textbf{まえしょり}にひつような\textbf{まえしょり}
+  ぼくのがんがえたこうりつてきなまえしょり、\textbf{そのためにひつようなまえしょり}
 \end{itemize}
 
-\end{frame}
-
-\begin{frame}{良い前処理を実現するための５箇条}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  RStudio内ですべて完結
-\item
-  \texttt{.Rproj}を作成する
-\item
-  GitやSubversionによるバージョン管理をおこなう
-\item
-  \texttt{.Rmd}でファイルを保存する
-\item
-  プロジェクトのガイドラインを策定する
-\end{enumerate}
+\large{\faHandLeft 議論を通じて知識・理解を深めたい}
 
 \end{frame}
 
 \begin{frame}
 
 \center{
-  \large{「いろいろと\textcolor{Blue2}{面倒}だ」}
-  
-  \huge{「でもあなたのちっぽけな\textbf{\textcolor{magenta}{頭では忘れてしまう}}でしょう（煽り）」}\
-  
-  \small{「ぐぬぬ」}
+  \Huge{\textbf{\textit{\textcolor{magenta}{\#Tsurami}}}}
 }
 
 \end{frame}
 
-\begin{frame}{何が目的か}
+\begin{frame}{\textit{\textcolor{magenta}{\#Tsurami}}}
 
-数時間ですべての作業が完了するプロジェクトはほとんどなく、多くのプロジェクトが長い時間を経て完成される。また、完成されてからも定期・不定記に管理する必要が生じる。そのため、プロジェクトは変動しつづけるものである。
-
--\textgreater{} 記録として残すことが大事
+\center{
+  \includegraphics{images/tsurami.png}
+  
+  \textit{\scriptsize{\faTwitter https://twitter.com/yamano357/status/552514988137783301}}
+}
 
 \end{frame}
 
-\begin{frame}{dd}
+\begin{frame}{\textit{\textcolor{magenta}{\#Tsurami}}}
+
+\center{
+  \includegraphics{images/tsurami2.png}
+  
+  \textit{\scriptsize{\faTwitter https://twitter.com/gg$\_$hatano/status/551328451068588032}}
+}
+
+\end{frame}
+
+\begin{frame}{\textit{\textcolor{magenta}{\#Tsurami}}}
+
+\center{
+  Japan.R2014 \textcolor{magenta}{所\ruby{沢}{さわ}}さんの発表より...
+
+  Remember \faQuoteLeft \textcolor{Blue2}{why are you using SJIS?} \faQuoteRight
+
+  \includegraphics{images/why_are_u_using_sjis.png}
+
+  \textit{\scriptsize{\faGithub https://github.com/hadley/dplyr/issues/339}}
+}
+
+\end{frame}
+
+\begin{frame}{\faThumbsDown 前処理を行う際に生じる問題の原因}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  以下の項目を円滑に進める体制が整っている
-\item
-  オープンなプロジェクトであればGitHubにリポジトリを作成する
-\item
-  し、コードとコメントの分離に努める
-\item
-  し、プロジェクト内での混乱、衝突を防ぐ
+  Are you okay?
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    邪智暴虐な俺々ファイルの存在
+  \item
+    コメントのない奇怪なコード
+  \item
+    作業過程の再現性の欠如
+  \item
+    とりあえず、的に書かれたコード
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Packrat\ldots{}}
+\begin{frame}
+
+{[}1{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' {[}12{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' {[}23{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' {[}34{]} ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' {[}45{]} ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+{[}56{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' {[}67{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' {[}78{]} ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' {[}89{]} ``滅'' ``滅'' ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' {[}100{]} ``滅''
+``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅'' ``滅''
+
+\end{frame}
+
+\begin{frame}{\faBullhorn Rを使った前処理５原則}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  作業はRStudio内ですべて完結させる
+\item
+  \hl{.Rproj}を作成する
+\item
+  \hl{.Rmd}でファイルを保存する
+\item
+  Gitによるバージョン管理をおこなう
+\item
+  プロジェクトの\textbf{\textcolor{magenta}{ガイドライン}}を策定する
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Rにおける統合開発環境: RStudio}
+
+\begin{columns}[T]
+  \begin{column}[T]{6cm}
+    \begin{itemize}
+      \item そろそろ ver.0.99
+      \item Viewerの強化
+      \item パッケージ名の補完
+      \item \scriptsize{ref) \faLink http://goo.gl/inFdt5}
+    \end{itemize}
+  \end{column}
+  \begin{column}[T]{4cm}
+    \includegraphics[scale = 0.25]{images/webshot_rstudio_com.png}
+  \end{column}
+\end{columns}
+
+\large{\faHandLeft これから説明する内容は\\すべてRStudio上で行える}
+
+\end{frame}
+
+\begin{frame}
+
+\center{
+  \Huge{\faCoffee 話題閑話}
+}
+
+\end{frame}
+
+\begin{frame}
+
+\center{
+  \Huge{\textbf{絶許}}
+  
+  \includegraphics{images/gg_hatamu_tweet.png}
+}
+
+\end{frame}
+
+\begin{frame}{.Rproj}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  フォルダ内にフォルダ名.Rprojというファイルが生成
+\item
+  RStudioの設定などが記述される
+\end{itemize}
+
+\begin{block}{ご利益}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  面倒なフォルダ指定、\hl{setwd}からの開放
+\item
+  パッケージ管理ツール Packratの利用
+\item
+  Gitの運用
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+
+\includegraphics[scale = 0.8]{images/rstudio_panel.png}
+
+\end{frame}
+
+\begin{frame}{.Rmd: R + Markdown + \LaTeX}
+
+\center{
+  \Huge{= \textcolor{magenta}{POWERFUL} \faRocket}
+  
+  \normalsize{このスライドも\hl{.Rmd}で書いている
+  
+  \faGithub \href{https://github.com/uribo/lab.note}{\hl{lab.note}}パッケージでどうぞ \footnote{ただしWindows, Linux、テメーらはダメだ（\textcolor{magenta}{未検証}）}
+  
+  \tiny{\hl{rmarkdown::draft("MyReport.Rmd",template="basic$\_$report",package="lab.note")}
+  }}
+}
+
+\end{frame}
+
+\begin{frame}{アウトプットｵｵｵｵｵｵｵｵ!!!!}
+
+ぼく「（モニターで確認して）よし、これでいいな」
+
+ボス「図を印刷して見せて」
+
+ぼく「（あああああああああ！！！！！！！！！）」
+
+\flushright{\faHandLeft \LaTeX おじさんが誕生した \footnote{HTMLでの出力はモニター向け。PDFを印刷したいよね、と。Word? しらん}}
+
+\end{frame}
+
+\begin{frame}{Git: 分散型バージョン管理システム}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  長い時間を経てプロジェクトは完成される
+\item
+  完成後も管理し続ける必要が生じる
+\item
+  同様の処理を、別プロジェクトで、自分以外の誰かが行う場合がある
+\end{itemize}
+
+\faHandLeft 記録として残すことが大事
+
+\textbf{\textcolor{magenta}{\faUser 自分のため、\faGroup 仲間のため、\faGlobe 誰かのため}}
+
+\end{frame}
+
+\begin{frame}{GitHubで広がるコミュニケーション}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  パッケージを作って公開
+\item
+  今日からあなたも開発者
+\item
+  芝を生やしてもちべーしょんを高めよう！
+\end{itemize}
+
+\center{
+  \includegraphics{images/contribution.png}
+}
+
+\end{frame}
+
+\begin{frame}{README $\fallingdotseq$ 嫁}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  リポジトリ（プロジェクト）の顔
+\item
+  迷った際はここを見れば解決できるように
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    作業のワークフローを書く
+  \item
+    ファイル名、関数名の規則
+  \item
+    プロットの色、サイズ
+  \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{\faMagic Tips}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  とにかく日本語はNG
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    SJIS
+  \end{itemize}
+\item
+  犬 -\textgreater{} \hl{INU}にするなら辞書をひいて\hl{dog}に
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    ローマ字カナも良くない
+  \end{itemize}
+\item
+  Excelは入力・閲覧用 -\textgreater{} \hl{dplyr}パッケージで
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    単位変換、新たな列の作成は闇
+  \end{itemize}
+\item
+  ハイフン、アンダーバーをどう扱うか
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    スペースの落とし穴
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\center{
+  \Large{「いろいろと\textcolor{Blue2}{面倒}だ」}
+    
+  \LARGE{「あなたのちっぽけな\\\textbf{\textcolor{magenta}{頭では忘れてしまう}}\\でしょう（煽り）」}\
+    
+  \footnotesize{「ぐぬぬ」}
+  }
 
 \end{frame}
 
 \begin{frame}{@dichika進捗どうですか\faEyeOpen}
 
-\includegraphics[angle = -3]{images/at_dichika.png}
-
-\end{frame}
-
-\begin{frame}{\large{Remember \textit{\textcolor{Black1}{why are you using SJIS}}}}
-
-\includegraphics{images/why_are_u_using_sjis.png}
-
-\begin{quote}
-\scriptsize{\faLink https://github.com/hadley/dplyr/issues/339}
-\end{quote}
-
-\end{frame}
-
-\begin{frame}{\#Tsurami}
-
-\includegraphics{images/tsurami.png}
-
-\begin{quote}
-\scriptsize{\faLink https://twitter.com/yamano357/status/552514988137783301}
-\end{quote}
-
-\end{frame}
-
-\begin{frame}{\#Tsurami}
-
-\includegraphics{images/tsurami2.png}
-
-\begin{quote}
-\scriptsize{\faLink https://twitter.com/gg$\_$hatano/status/551328451068588032}
-\end{quote}
-
-\end{frame}
-
-\begin{frame}{\#Tsurami}
-
 \center{
-  \Huge{供養しましょう}
-  \small{\url{https://github.com/uribo/data_treatment}}
+  \includegraphics[angle = -3]{images/at_dichika.png}
+  
+  \textit{\scriptsize{\faLink http://www.slideshare.net/dichika/maeshori-missing}}
 }
 
 \end{frame}
 
-\begin{frame}{前処理のための前処理チェックリスト}
+\begin{frame}{\Large{みんなで \textit{\textcolor{magenta}{\#Tsurami}} を供養しよう}}
+
+\center{
+  \includegraphics[scale = 0.25]{images/github_uribo_data_treatment.png}
+  
+  \textit{\scriptsize{\faGithub https://github.com/uribo/data$\_$treatment}}
+}
 
 \end{frame}
 
-\begin{frame}{Abstract}
+\begin{frame}{\small{Sessioninfo: R version 3.1.2 (2014-10-31)}}
 
-元データの単位変換や新たな値を算出するといった前処理の作業は、データ解析の大部分を占める作業である。一方で前処理の作業は、データを整形する、項目名を修正する、新たな項目を追加するというように、決まったパターンであることが多いため、Rによる自動的な処理が可能である。本発表では実際のデータ解析前処理において、多くの作業時間を費やすことになりがちな前処理を効率的に行うためのツールや前段階として用意しておくとよいと考えられる項目を紹介する。
+{[}1{]} ``webshot'' ``ggthemr'' ``knitcitations'' {[}4{]} ``fortunes''
+``xtable'' ``rmarkdown''\\ {[}7{]} ``devtools'' ``popbio''
+``quadprog''\\{[}10{]} ``ggplot2'' ``glmmML'' ``dplyr''\\{[}13{]}
+``magrittr'' ``MASS'' ``lattice''\\{[}16{]} ``stringr'' ``knitr''
 
-\end{frame}
-
-\begin{frame}[fragile]{\small{Sessioninfo: R version 3.1.2 (2014-10-31)}}
-
-\begin{verbatim}
- [1] "DiagrammeR"   
- [2] "ggthemr"      
- [3] "knitcitations"
- [4] "fortunes"     
- [5] "xtable"       
- [6] "rmarkdown"    
- [7] "devtools"     
- [8] "popbio"       
- [9] "quadprog"     
-[10] "ggplot2"      
-[11] "glmmML"       
-[12] "dplyr"        
-[13] "magrittr"     
-[14] "MASS"         
-[15] "lattice"      
-[16] "stringr"      
-[17] "knitr"        
-\end{verbatim}
+\flushright{\textit{Questions?} \faComments}
 
 \end{frame}
 
