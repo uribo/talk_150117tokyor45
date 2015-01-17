@@ -23,6 +23,7 @@ library(knitcitations)
 library(ggplot2)
 library(xtable)
 library(ggthemr) # https://github.com/cttobin/ggthemr
+library(webshot)
 ### knitcitations options ###
 cite_options(max.names = 1)
 ### ggthemr's theme ###
