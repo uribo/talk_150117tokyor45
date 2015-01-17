@@ -149,7 +149,7 @@ rep("どうしてこうなった", 30)
 ## \textit{\textcolor{magenta}{\#Tsurami}}
 
 \center{
-  Japan.R2014 \textcolor{magenta}{所\ruby{沢}{さわ}}さんの発表より...
+  Japan.R2014 \textcolor{magenta}{所\ruby{沢}{さわ}}さんの\href{http://www.slideshare.net/TokorosawaYoshio/japanr2014}{発表\faExternalLink}より...
 
   Remember \faQuoteLeft \textcolor{Blue2}{why are you using SJIS?} \faQuoteRight
 
@@ -172,13 +172,13 @@ rep("どうしてこうなった", 30)
 rep("滅", 110)
 ```
 
-## \faBullhorn Rを使った前処理５原則
+## \faBullhorn Rを使った\textcolor{magenta}{前処理５原則}
 
 1. 作業はRStudio内ですべて完結させる
 2. \hl{.Rproj}を作成する
 3. \hl{.Rmd}でファイルを保存する
 4. Gitによるバージョン管理をおこなう
-5. プロジェクトの\textbf{\textcolor{magenta}{ガイドライン}}を策定する
+5. プロジェクトのガイドラインを策定する
 
 ## Rにおける統合開発環境: RStudio
 
@@ -214,6 +214,8 @@ webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400
   \Huge{\textbf{絶許}}
   
   \includegraphics{images/gg_hatamu_tweet.png}
+  
+  \textit{\scriptsize{\faTwitter https://twitter.com/gg$\_$hatano/status/555923067675738113}}
 }
 
 ## .Rproj
@@ -240,7 +242,7 @@ webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400
   
   \normalsize{このスライドも\hl{.Rmd}で書いている
   
-  \faGithub \href{https://github.com/uribo/lab.note}{\hl{lab.note}}パッケージでどうぞ \footnote{ただしWindows, Linux、テメーらはダメだ（\textcolor{magenta}{未検証}）}
+  \faGithub \href{https://github.com/uribo/lab.note}{\hl{lab.note}}パッケージでどうぞ \footnote{ただしWindows、Linux、テメーらはダメだ（\textcolor{magenta}{未検証}）}
   
   \tiny{\hl{rmarkdown::draft("MyReport.Rmd",template="basic$\_$report",package="lab.note")}
   }}
@@ -254,7 +256,7 @@ webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400
 
 ぼく「（あああああああああ！！！！！！！！！）」
 
-\flushright{\faHandLeft \LaTeX おじさんが誕生した \footnote{HTMLでの出力はモニター向け。PDFを印刷したいよね、と。Word? しらん}}
+\flushright{\faHandLeft \LaTeX おじさんが誕生した \footnote{HTMLでの出力はモニター向け。PDFを印刷したいよね、と。\textit{Word? しらん}}}
 
 
 ## Git: 分散型バージョン管理システム
@@ -264,8 +266,6 @@ webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400
 * 同様の処理を、別プロジェクトで、自分以外の誰かが行う場合がある
 
 \faHandLeft 記録として残すことが大事
-
-\textbf{\textcolor{magenta}{\faUser 自分のため、\faGroup 仲間のため、\faGlobe 誰かのため}}
 
 ## GitHubで広がるコミュニケーション
 
@@ -294,16 +294,30 @@ webshot("http://www.rstudio.com", "images/webshot_rstudio_com.png", vwidth = 400
 * Excelは入力・閲覧用 -> \hl{dplyr}パッケージで
     * 単位変換、新たな列の作成は闇
 * ハイフン、アンダーバーをどう扱うか
-    * スペースの落とし穴
+    * スペースの落とし穴 (\LaTeX)
 
 ---
+
 \center{
-  \Large{「いろいろと\textcolor{Blue2}{面倒}だ」}
-    
-  \LARGE{「あなたのちっぽけな\\\textbf{\textcolor{magenta}{頭では忘れてしまう}}\\でしょう（煽り）」}\
+  \Huge{「いろいろと\textcolor{Blue2}{面倒}だ」}  
+}
+
+---
+
+\center{    
+  \LARGE{「でも、あなたのちっぽけな\\\textbf{\textcolor{magenta}{頭では忘れてしまう}}\\でしょう（煽り）」}\
     
   \footnotesize{「ぐぬぬ」}
-  }
+}
+
+---
+
+\center{
+  \Huge{\textbf{\textcolor{magenta}{\faUser 自分のため、\\\faGroup 仲間のため、\\\faGlobe 誰かのため}}}
+}
+
+\flushright{\textit{Let's go! \faRocket}}
+
 
 ## @dichika進捗どうですか\faEyeOpen
 
@@ -331,4 +345,4 @@ webshot("https://github.com/uribo/data_treatment", "images/github_uribo_data_tre
 sessionInfo() %$% otherPkgs %>% names
 ```
 
-\flushright{\textit{Questions?} \faComments}
+\flushright{\textit{\textcolor{magenta}{Questions?}} \faComments}
