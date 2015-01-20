@@ -11,3 +11,5 @@
 ## リンク
 
 * [atnd](https://atnd.org/events/60908)
+* [第45回R勉強会@東京まとめ - Togetterまとめ](http://togetter.com/li/771249)
+* [第45回R勉強会@東京で受付してきた - INPUTしたらOUTPUT!](http://estrellita.hatenablog.com/entry/2015/01/18/014954)
